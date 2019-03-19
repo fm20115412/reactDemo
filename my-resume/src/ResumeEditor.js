@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class ResumeEditor extends Component {
     render(){
         return(
-            <div>I'm ResumeEditor</div>
+            <div id = 'resumeEditor'>I'm ResumeEditor</div>
         )
     }
 }

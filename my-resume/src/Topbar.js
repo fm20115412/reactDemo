@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 class Topbar extends Component {
     render(){
         return(
-            <div>I'm topbar</div>
+            <div id = 'topbar'>
+                <div className="wrapper">
+                    <span className="logo">Resumer</span>
+                </div>
+            </div>
         )
     }
 }
