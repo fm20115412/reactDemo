@@ -5,27 +5,74 @@ class ResumeEditor extends Component {
         super(props)
         this.state = {
             selected : 'introduction',
-            lists: ['introduction', 'education', 'project', 'award', 'internship','others'],
-            introduction : ['姓名','性别','年龄','出生日期','联系方式'],
-            education : ['本科','研究生'],
-            project : ['项目一','项目二','项目三'],
-            award: ['奖励一','奖励二','奖励三'],
-            internship: ['实习一','实习二'],
-            others :['其他']
+            lists:[
+                { type:"introduction"},
+                { type:"education"},
+                { type:"project"},
+                { type:"award"},
+                { type:"internship"},
+                { type:"others"}
+            ],
+            introduction:[
+                {name:"姓名"},
+                {name:"性别"},
+                {name:"年龄"},
+                {name:"出生日期"},
+                {name:"联系方式"}
+            ],
+            education:[
+                {name:"本科"},
+                {name:"研究生"},
+                {name:"博士"}
+            ],
+            project:[
+                {name:"项目一"},
+                {name:"项目二"},
+                {name:"项目三"}
+            ],
+            award:[
+                {name:"奖励一"},
+                {name:"奖励二"},
+                {name:"奖励三"}
+            ],
+            internship:[
+                {name:"实习一"},
+                {name:"实习二"},
+                {name:"实习三"}
+            ],
+            others:[
+                {name:"其他"}
+            ],
         }
+        this.addId = this.addId.bind(this)
+    }
+    addId(data){
+        var localCounter = 1;
+        data.forEach(el => {
+            el.id = localCounter++;
+        });
+    }
+    componentDidMount(){
+        this.addId(this.state.lists)
+        this.addId(this.state.education)
+        this.addId(this.state.introduction)
+        this.addId(this.state.internship)
+        this.addId(this.state.project)
+        this.addId(this.state.award)
+        this.addId(this.state.others)
     }
     render(){
-        const listItems = this.state.lists.map((item,index) =>
-            <li key = {index} 
-                className = {this.state.selected === item ? 'active' :''}
-                onClick = {()=>{this.setState({selected:item})}}>
-                {item}
+        const listItems = this.state.lists.map((item) =>
+            <li key = {item.id} 
+                className = {this.state.selected === item.type ? 'active' :''}
+                onClick = {()=>{this.setState({selected:item.type})}}>
+                {item.type}
             </li>
         );
-        const panelItems = this.state.lists.map((item,index) =>
-            <li key = {index} 
-                className = {this.state.selected === item ? 'show' :'hide'}>
-                {this.state[item]}
+        const panelItems = this.state.lists.map((item) =>
+            <li key = {item.id} 
+                className = {this.state.selected === item.type ? 'show' :'hide'}>
+                {this.state[item.type].map((item)=>item.name)}
             </li>
         );
         return(
