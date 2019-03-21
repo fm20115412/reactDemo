@@ -6,12 +6,30 @@ class ResumeEditor extends Component {
         this.state = {
             selected : 'introduction',
             lists:[
-                { type:"introduction"},
-                { type:"education"},
-                { type:"project"},
-                { type:"award"},
-                { type:"internship"},
-                { type:"others"}
+                { 
+                    type:"introduction",
+                    icon:"geren13"
+                },
+                { 
+                    type:"education",
+                    icon:"jiaoyu"
+                },
+                { 
+                    type:"project",
+                    icon:"xiangmu"
+                },
+                { 
+                    type:"award",
+                    icon:"jiangli"
+                },
+                { 
+                    type:"internship",
+                    icon:"shixijingli"
+                },
+                { 
+                    type:"others",
+                    icon:"qita1"
+                }
             ],
             introduction:[
                 {name:"姓名"},
@@ -66,7 +84,7 @@ class ResumeEditor extends Component {
             <li key = {item.id} 
                 className = {this.state.selected === item.type ? 'active' :''}
                 onClick = {()=>{this.setState({selected:item.type})}}>
-                {item.type}
+                <span className={`icon iconfont icon-${item.icon}`}></span>
             </li>
         );
         const panelItems = this.state.lists.map((item) =>
