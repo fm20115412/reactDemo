@@ -32,11 +32,25 @@ class ResumeEditor extends Component {
                 }
             ],
             introduction:[
-                {name:"姓名"},
-                {name:"性别"},
-                {name:"年龄"},
-                {name:"出生日期"},
-                {name:"联系方式"}
+                {
+                    name:"姓名",
+                    value:"冯敏"
+                },
+                {   name:"性别" ,
+                    value:"女"
+                },
+                {
+                    name:"年龄",
+                    value:11
+                },
+                {
+                    name:"出生日期",
+                    value:"1994-2-8"
+                },
+                {
+                    name:"联系方式",
+                    value:"18716259769"
+                }
             ],
             education:[
                 {name:"本科"},
@@ -63,6 +77,7 @@ class ResumeEditor extends Component {
             ],
         }
         this.addId = this.addId.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
     addId(data){
         var localCounter = 1;
@@ -72,27 +87,43 @@ class ResumeEditor extends Component {
     }
     componentDidMount(){
         this.addId(this.state.lists)
-        this.addId(this.state.education)
-        this.addId(this.state.introduction)
-        this.addId(this.state.internship)
-        this.addId(this.state.project)
-        this.addId(this.state.award)
-        this.addId(this.state.others)
+    }
+    handleChange(newvalue,list,item,index){
+        let copy = this.state[list.type].slice()
+        let type = list.type
+        copy[index].value = newvalue
+        this.setState({
+            type:copy
+        })
     }
     render(){
-        const listItems = this.state.lists.map((item) =>
-            <li key = {item.id} 
-                className = {this.state.selected === item.type ? 'active' :''}
-                onClick = {()=>{this.setState({selected:item.type})}}>
-                <span className={`icon iconfont icon-${item.icon}`}></span>
+        const listItems = this.state.lists.map((list) =>
+            <li key = {list.id} 
+                className = {this.state.selected === list.type ? 'active' :''}
+                onClick = {()=>{this.setState({selected:list.type})}}>
+                <span className={`icon iconfont icon-${list.icon}`}></span>
             </li>
         );
-        const panelItems = this.state.lists.map((item) =>
-            <li key = {item.id} 
-                className = {this.state.selected === item.type ? 'show' :'hide'}>
-                {this.state[item.type].map((item)=>item.name)}
-            </li>
-        );
+        const panelItems = this.state.lists.map((list)=>{
+            return (
+                < li key={list.id}
+                    className={this.state.selected === list.type ? 'show' : 'hide'} >
+                    {   this.state[list.type].map((item,index) => {
+                            return (
+                                <div>
+                                    <div className='resumeField'>
+                                        <label>{item.name}</label>
+                                        <input type="text" value={item.value} onChange={(e) => this.handleChange(e.target.value, list, item, index)} />
+                                    </div>
+                                    <hr />
+                                </div>
+                                
+                            )
+                        })
+                    }
+                </li >
+            )
+        })
         return(
             <div id = 'resumeEditor'>
             <nav>

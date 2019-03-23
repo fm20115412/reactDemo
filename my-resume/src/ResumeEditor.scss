@@ -25,14 +25,35 @@
             }
         }
     .panels {
+        flex-grow: 1;
+        > li {
+            padding: 24px;
+        }
         .show{
             display: block;
         }
         .hide{
             display: none;
         }
-    }
+        .resumeField{
+            > label{
+            display: block;
+            }
+            input[type=text]{
+            margin: 16px 0;
+            border: 1px solid #ddd;
+            box-shadow:inset 0 1px 3px 0 rgba(0,0,0,0.25);
+            width: 100%;
+            height: 40px;
+            padding: 0 8px;
+            }
+        }
+        hr{
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 7px 0;
+        }
     ol{
         list-style: none;
     }
-}
+}}
