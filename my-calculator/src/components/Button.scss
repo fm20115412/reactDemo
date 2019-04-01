@@ -1,0 +1,25 @@
+.component-button{
+    width :25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 1px 1px 0;
+    > button {
+        display: inline-block;
+        width: 100%;
+        border: none;
+        font-weight: 300;
+        background-color: #e0e0e0;
+        font-size: 1.5rem;
+    }
+    &:last-child {
+        margin-right :0;
+    }
+}
+.wide {
+    width: 50%;
+}
+.orange > button {
+    background-color: #f5923e;
+    color: white;
+}

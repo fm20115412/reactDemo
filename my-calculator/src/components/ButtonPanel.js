@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from './Button.js'
 import PropTypes from "prop-types";
+import './ButtonPanel.scss';
 
 class ButtonPanel extends Component {
     render(){
