@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './App.scss';
-import Display from './Display'
-import ButtonPanel from './ButtonPanel'
+import Display from './Display';
+import ButtonPanel from './ButtonPanel';
+import calculate from '../logic/calculate';
 
 class App extends Component {
     constructor(props){
@@ -15,7 +16,7 @@ class App extends Component {
         this.handleClick = this.handleClick.bind(this)
     }
     handleClick(name){
-        console.log(name)
+        this.setState(calculate(this.state,name))
     }
     render() {
         return (

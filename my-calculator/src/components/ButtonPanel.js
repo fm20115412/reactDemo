@@ -17,7 +17,7 @@ class ButtonPanel extends Component {
                     <Button name = '7'  handleClick = {this.props.handleClick}></Button>
                     <Button name = '8'  handleClick = {this.props.handleClick}></Button>
                     <Button name = '9'  handleClick = {this.props.handleClick}></Button>
-                    <Button name = '*'  handleClick = {this.props.handleClick} orange></Button>
+                    <Button name = 'x'  handleClick = {this.props.handleClick} orange></Button>
                 </div>
                 <div className = 'row'>
                     <Button name = '4' handleClick = {this.props.handleClick}></Button>
