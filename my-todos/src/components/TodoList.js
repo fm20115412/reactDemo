@@ -14,7 +14,7 @@ class TodoList extends Component{
         const todoItems = this.props.todos.map((todo,index) => {
             return (
                 <div>
-                    <input type='radio' value={todo.completed} onChange={()=>this.handleRadioChange(index)} />
+                    <input type='radio' checked={todo.completed} onClick={()=>this.handleRadioChange(index)} />
                     <span className={`todo-${todo.completed}`}>{todo.text}</span>
                     <span>{todo.completed}</span>
                     <button onClick = {()=>this.props.deleteTodo(index)}>delete</button>
