@@ -1,0 +1,7 @@
+.App {
+    margin: 20px;
+}
+.complete-true{
+    text-decoration: line-through;
+    color:grey;
+}
