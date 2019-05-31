@@ -11,9 +11,9 @@ const fetchWeatherFailure = (error) => ({
     type: 'FETCH_FAILURE',
     error
 })
-
 export function fetchWeather(cityName) {
     return async (dispatch) => {
+        dispatch(fetchWeatherStarted())
         if (cityName) {
             try {
                 let weatherInfo = await fetchWeatherByName(cityName);
@@ -22,8 +22,6 @@ export function fetchWeather(cityName) {
                 dispatch(fetchWeatherFailure(error))
             }
         } else {
-            // 没有cityName,代表初始化数据
-            dispatch(fetchWeatherStarted())
             try {
                 let ip = await fetchIp();
                 let cityName = await fetchCity(ip);
@@ -31,7 +29,7 @@ export function fetchWeather(cityName) {
                 dispatch(fetchWeatherSuccess(weatherInfo))
             }
             catch (error) {
-                
+                dispatch(fetchWeatherFailure(error))
             }
         }
     };

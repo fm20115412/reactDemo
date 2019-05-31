@@ -5,7 +5,10 @@ const createStorageMiddleware = store => next => action => {
         if(sessionStorage.getItem('locations')){
             locations = JSON.parse(sessionStorage.getItem('locations'))
         }
-        locations.push(action.payload)
+        locations.push({
+            status:'success',
+            ...action.payload
+        })
         sessionStorage.setItem('locations', JSON.stringify(locations));
     }
     return next(action);

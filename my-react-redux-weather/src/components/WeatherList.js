@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { fetchWeather } from '../action';
-import AddWeather from './AddWeather'
+import AddWeather from './AddWeather';
+import './WeatherList.css';
 
 class WeatherList extends Component{
     constructor(){
@@ -13,13 +14,14 @@ class WeatherList extends Component{
         }
     }
     render(){
-        let status = this.props.status
-        switch (status) {
-            case 'loading':
-                return <div>天气信息请求中...</div>;
-            case 'success': {
-                let locations = this.props.locations;
-                const locationList = locations.map((location, index) => {
+        const locationList = this.props.locations.map((location, index) => {
+            let status = location.status;
+            console.log('index is ',index)
+            console.log('status is',status)
+            switch (status) {
+                case 'loading':
+                    return <div>天气信息请求中...</div>;
+                case 'success': {
                     return (
                         <div>
                             <span>{location.name}</span>
@@ -27,27 +29,24 @@ class WeatherList extends Component{
                             <p>{location.weather[0].description}</p>
                         </div>
                     )
-                })
-                return (
-                    <div>
-                        {locationList}
-                        <AddWeather />
-                    </div>  
-                )
-            };
-            case 'failure':
-                return <div>天气信息装载失败</div> 
-            default:
-                throw new Error('unexpected status ' + status);
-        }
-        
+                };
+                case 'failure':
+                    return <div>天气信息装载失败</div>
+                default:
+                    throw new Error('unexpected status ' + status);
+            }
+        })
+        return(
+            <div className='weather-list'>
+                <div>{locationList}</div>
+                <AddWeather />
+            </div>
+        )
     }
 }
 const mapStateTopProps = (state) => {
     return {
         locations:state.locations,
-        status:state.status
-
     }
 }
 const mapDispatchToProps = (dispatch) => {

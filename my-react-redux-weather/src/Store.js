@@ -11,10 +11,10 @@ const enhancer = composeEnhancers(
     applyMiddleware(thunk,storage)
 );
 
-let initData = { status: 'loading', locations: [] };
+let initData = { locations: []};
+
 if(window.sessionStorage.getItem('locations')){
     initData = {
-        status:'success',
         locations: JSON.parse(window.sessionStorage.getItem('locations'))
     }
     
