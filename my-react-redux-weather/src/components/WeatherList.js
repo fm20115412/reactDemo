@@ -20,18 +20,19 @@ class WeatherList extends Component{
             console.log('status is',status)
             switch (status) {
                 case 'loading':
-                    return <div>天气信息请求中...</div>;
+                    return <div>{location.tips}</div>;
                 case 'success': {
                     return (
                         <div>
                             <span>{location.name}</span>
                             <img src={`https://www.countryflags.io/${location.country}/shiny/48.png`} />
-                            <p>{location.weather[0].description}</p>
+                            <span>{location.weather[0].description}</span>
+                            <img src={`https://openweathermap.org/img/w/${location.weather[0].icon}.png`}/>
                         </div>
                     )
                 };
                 case 'failure':
-                    return <div>天气信息装载失败</div>
+                    return <div>{location.tips}</div>
                 default:
                     throw new Error('unexpected status ' + status);
             }
